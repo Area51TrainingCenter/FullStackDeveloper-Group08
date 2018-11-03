@@ -20,6 +20,7 @@ export class AutenticacionService {
 	}
 
 	logout() {
+		localStorage.clear()
 		this.onCambioEstado.next(false)
 	}
 

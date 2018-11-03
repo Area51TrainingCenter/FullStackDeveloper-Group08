@@ -13,6 +13,12 @@ export class AppComponent {
 	constructor(private autenticacionService: AutenticacionService) { }
 
 	ngOnInit() {
+		if (localStorage.getItem("usuarioLogueado")) {
+			this.usuarioLogueado = true
+		} else {
+			this.usuarioLogueado = false
+		}
+
 		this.autenticacionService.onCambioEstado
 			.subscribe(
 				(estado: boolean) => this.usuarioLogueado = estado

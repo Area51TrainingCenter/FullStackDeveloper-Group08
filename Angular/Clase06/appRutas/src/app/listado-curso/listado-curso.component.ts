@@ -29,7 +29,10 @@ export class ListadoCursoComponent implements OnInit {
 	}
 
 	nuevo() {
-		this.ruteador.navigate(["cursos/nuevo"])
+		this.ruteador.navigate(["cursos/nuevo"], {
+			queryParams: { tit: "Nuevo Curso" },
+			fragment: "admin"
+		})
 	}
 
 	eliminar(indice: number) {

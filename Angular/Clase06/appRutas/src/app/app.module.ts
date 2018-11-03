@@ -12,14 +12,23 @@ import { NuevoCursoComponent } from './nuevo-curso/nuevo-curso.component';
 import { ListadoAlumnoComponent } from './listado-alumno/listado-alumno.component';
 import { EdicionAlumnoComponent } from './edicion-alumno/edicion-alumno.component';
 import { NuevoAlumnoComponent } from './nuevo-alumno/nuevo-alumno.component';
+import { AutenticacionGuard } from './guards/autenticacion.guard';
+import { AutorizacionGuard } from './guards/autorizacion.guard';
 
 
 const rutas: Route[] = [
 	{ path: "", component: LoginComponent },
 	{ path: "resumen", component: ResumenComponent },
-	{ path: "cursos", component: ListadoCursoComponent },
-	{ path: "cursos/nuevo", component: NuevoCursoComponent },
-	{ path: "cursos/edicion/:id", component: EdicionCursoComponent },
+	{
+		path: "cursos", canActivateChild: [AutenticacionGuard], component: ListadoCursoComponent, children: [
+			{ path: "nuevo", component: NuevoCursoComponent },
+			{ path: "edicion/:id", component: EdicionCursoComponent, canActivate: [AutorizacionGuard] }
+		]
+	},
+
+	/*	{ path: "cursos", component: ListadoCursoComponent },
+		{ path: "cursos/nuevo", component: NuevoCursoComponent },
+		{ path: "cursos/edicion/:id", component: EdicionCursoComponent },*/
 	{ path: "alumnos", component: ListadoAlumnoComponent }
 ]
 
@@ -41,7 +50,7 @@ const rutas: Route[] = [
 		RouterModule.forRoot(rutas),
 		FormsModule
 	],
-	providers: [],
+	providers: [AutenticacionGuard],
 	bootstrap: [AppComponent]
 })
 export class AppModule { }

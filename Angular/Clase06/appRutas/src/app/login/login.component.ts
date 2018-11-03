@@ -9,17 +9,26 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-	constructor(private autenticacionService: AutenticacionService, private ruteador: Router) { }
+	constructor(private autenticacionService: AutenticacionService, private ruteador: Router) {
+
+	}
 
 	ngOnInit() {
+		setTimeout(() => {
+			this.autenticacionService.logout()
+		})
 	}
 
 	ingresar() {
+
+
+
 		this.autenticacionService.login()
 			.subscribe(
 				(estado: boolean) => {
 					if (estado) {
 						this.autenticacionService.onCambioEstado.next(estado)
+						localStorage.setItem("usuarioLogueado", "si")
 						this.ruteador.navigate(["resumen"])
 					}
 				}
