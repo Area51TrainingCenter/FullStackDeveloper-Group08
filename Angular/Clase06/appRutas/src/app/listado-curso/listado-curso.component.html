@@ -1,0 +1,20 @@
+<button class="btn btn-success" (click)="nuevo()">Nuevo</button>
+
+<table class="table table-striped table-hover" *ngIf="listaCursos && listaCursos.length; else NoHayDatos">
+	<thead>
+		<tr>
+			<th>Título</th>
+			<th>Estado</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let curso of listaCursos">
+			<td>{{curso.titulo}}</td>
+			<td>{{curso.estado}}</td>
+		</tr>
+	</tbody>
+</table>
+
+<ng-template #NoHayDatos>
+	<div>No hay datos</div>
+</ng-template>
