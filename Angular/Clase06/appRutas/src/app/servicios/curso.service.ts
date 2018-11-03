@@ -32,7 +32,37 @@ export class CursoService {
 			}
 		)
 	}
-	eliminar() { }
-	actualizar() { }
-	detallar() { }
+	eliminar(indice: number): Observable<any> {
+		this.data.splice(indice, 1)
+
+		return Observable.create(
+			(observador: Observer<any>) => {
+				setTimeout(() => {
+					observador.next(0)
+				}, 500)
+			}
+		)
+	}
+	actualizar(curso: ICurso, indice: number): Observable<any> {
+		this.data[indice] = curso
+
+		return Observable.create(
+			(observador: Observer<any>) => {
+				setTimeout(() => {
+					observador.next(true)
+				}, 500)
+			}
+		)
+	}
+
+	detallar(indice: number): Observable<ICurso> {
+		return Observable.create(
+			(observador: Observer<ICurso>) => {
+				setTimeout(() => {
+					const item = Object.assign({}, this.data[indice])
+					observador.next(item)
+				}, 500)
+			}
+		)
+	}
 }

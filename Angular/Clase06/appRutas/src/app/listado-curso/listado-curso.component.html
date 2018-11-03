@@ -5,12 +5,17 @@
 		<tr>
 			<th>Título</th>
 			<th>Estado</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
-		<tr *ngFor="let curso of listaCursos">
+		<tr *ngFor="let curso of listaCursos; let indice = index">
 			<td>{{curso.titulo}}</td>
 			<td>{{curso.estado}}</td>
+			<td>
+				<button class="btn btn-warning" (click)="editar(indice)">Editar</button>
+				<button class="btn btn-danger" (click)="eliminar(indice)">Eliminar</button>
+			</td>
 		</tr>
 	</tbody>
 </table>

@@ -15,6 +15,10 @@ export class ListadoCursoComponent implements OnInit {
 	constructor(private cursoService: CursoService, private ruteador: Router) { }
 
 	ngOnInit() {
+		this.listar()
+	}
+
+	listar() {
 		this.cursoService.listar()
 			.subscribe(
 				(datos: ICurso[]) => {
@@ -26,6 +30,19 @@ export class ListadoCursoComponent implements OnInit {
 
 	nuevo() {
 		this.ruteador.navigate(["cursos/nuevo"])
+	}
+
+	eliminar(indice: number) {
+		if (confirm("¿Está seguro?")) {
+			this.cursoService.eliminar(indice)
+				.subscribe(
+					() => this.listar()
+				)
+		}
+	}
+
+	editar(indice: number) {
+		this.ruteador.navigate(["cursos/edicion", indice])
 	}
 
 }

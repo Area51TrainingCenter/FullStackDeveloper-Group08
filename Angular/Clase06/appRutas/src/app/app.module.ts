@@ -19,6 +19,7 @@ const rutas: Route[] = [
 	{ path: "resumen", component: ResumenComponent },
 	{ path: "cursos", component: ListadoCursoComponent },
 	{ path: "cursos/nuevo", component: NuevoCursoComponent },
+	{ path: "cursos/edicion/:id", component: EdicionCursoComponent },
 	{ path: "alumnos", component: ListadoAlumnoComponent }
 ]
 
