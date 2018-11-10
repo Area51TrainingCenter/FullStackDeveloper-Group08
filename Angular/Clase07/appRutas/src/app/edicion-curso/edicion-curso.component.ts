@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CursoService } from '../servicios/curso.service';
 import { ICurso } from '../modelos/curso.interface';
 import { IDeactivate } from '../ideactivate.interface';
+import { CursoResolve } from '../guards/curso.resolve';
 
 @Component({
 	selector: 'app-edicion-curso',
@@ -15,7 +16,7 @@ export class EdicionCursoComponent implements OnInit, IDeactivate {
 	curso: ICurso = {}
 	cursoOriginal: ICurso
 
-	constructor(private rutaActiva: ActivatedRoute, private cursoService: CursoService, private ruteador: Router) { }
+	constructor(private rutaActiva: ActivatedRoute, private cursoService: CursoService, private cursoResolve: CursoResolve, private ruteador: Router) { }
 
 	canDeactivateComponente(): boolean {
 		if (this.curso.titulo == this.cursoOriginal.titulo) {
@@ -32,8 +33,15 @@ export class EdicionCursoComponent implements OnInit, IDeactivate {
 	ngOnInit() {
 		this.id = +this.rutaActiva.snapshot.paramMap.get("id")
 
-		this.curso = this.rutaActiva.snapshot.data["dataCurso"]
-		this.cursoOriginal = this.rutaActiva.snapshot.data["dataCurso"]
+		console.log(this.rutaActiva.snapshot.data["dataCurso"])
+
+		this.curso = this.cursoResolve.curso
+		this.cursoOriginal = Object.assign({}, this.curso)
+
+		/*this.curso = this.rutaActiva.snapshot.data["dataCurso"]
+		this.cursoOriginal = this.rutaActiva.snapshot.data["dataCurso"]*/
+
+
 
 		/*this.cursoService.detallar(this.id)
 			.subscribe(
