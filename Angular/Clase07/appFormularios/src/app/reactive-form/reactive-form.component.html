@@ -1,0 +1,36 @@
+<div class="container">
+	<div class="row">
+		<div class="col-6">
+			<form (ngSubmit)="grabar()" [formGroup]="grupoFormulario">
+				<div class="form-group">
+					<input type="text" placeholder="Nombre" class="form-control" name="nombre" formControlName="nombre">
+					<span *ngIf="!grupoFormulario.get('nombre').valid && grupoFormulario.get('nombre').touched">El campo es requerido</span>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Correo" name="correo" formControlName="correo">
+					<span *ngIf="!grupoFormulario.get('correo').valid && grupoFormulario.get('correo').touched && grupoFormulario.get('correo').hasError('required')">El
+						campo es requerido</span>
+					<span *ngIf="!grupoFormulario.get('correo').valid && grupoFormulario.get('correo').touched && grupoFormulario.get('correo').hasError('email')">El
+						formato debe ser de correo</span>
+					<span *ngIf="!grupoFormulario.get('correo').valid && grupoFormulario.get('correo').touched && grupoFormulario.get('correo').hasError('correoInvalido')">Solo
+						se aceptan correos de area51.pe</span>
+				</div>
+				<div class="form-group">
+					<input type="password" class="form-control" formControlName="contrasena" placeholder="Contraseña">
+					<span *ngIf="!grupoFormulario.get('contrasena').valid && grupoFormulario.get('contrasena').touched && grupoFormulario.get('contrasena').hasError('required')">La
+						contraseña es requerida</span>
+				</div>
+				<div class="form-group">
+					<input type="password" class="form-control" formControlName="confirmacion" placeholder="Confirmación de contraseña">
+					<span *ngIf="!grupoFormulario.get('confirmacion').valid && grupoFormulario.get('confirmacion').touched && grupoFormulario.get('confirmacion').hasError('confirmacionInvalida')">La
+						contraseña y la confirmación deben coincidir</span>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-success" [disabled]="!grupoFormulario.valid">Grabar</button>
+					<button class="btn btn-danger" type="button" (click)="setear()">Setear</button>
+					<button class="btn btn-warning" type="button" (click)="resetear()">Resetear</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,25 @@
+<div class="container">
+	<div class="row">
+		<div class="col-6">
+			<form #f="ngForm" (ngSubmit)="grabar()">
+				<div class="form-group">
+					<input type="text" placeholder="Nombre" class="form-control" name="nombre" ngModel required #nombre="ngModel">
+					<span *ngIf="!nombre.valid && nombre.touched">El campo es requerido</span>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="Correo" name="correo" ngModel required email #correo="ngModel">
+					<span *ngIf="!correo.valid && correo.touched && correo.errors.required">El campo es requerido</span>
+					<span *ngIf="!correo.valid && correo.touched && correo.errors.email">El formato no es de correo</span>
+				</div>
+				<!--<div class="form-group">
+					<button type="button" class="btn btn-success" (click)="grabar()" [disabled]="!f.valid">Grabar</button>
+				</div>-->
+				<div class="form-group">
+					<button class="btn btn-success">Grabar</button>
+					<button class="btn btn-danger" type="button" (click)="setear()">Setear</button>
+					<button class="btn btn-warning" type="button" (click)="resetear()">Resetear</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
