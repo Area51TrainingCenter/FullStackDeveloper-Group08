@@ -1,0 +1,68 @@
+<div>{{fecha | date: "d/MMM/yyyy" | uppercase}}</div>
+
+<div>{{'Sergio Hidalgo' | uppercase}}</div>
+
+<div>{{librosTexto | async}}</div>
+
+<ul>
+	<li *ngFor="let book of librosTexto | async">
+		{{book}}
+	</li>
+</ul>
+
+<hr>
+<form>
+	<div class="form-group">
+		<input type="text" class="form-control" [(ngModel)]="filtro" name="filtro">
+	</div>
+	<div class="form-group">
+		<select name="seleccion" id="" class="form-control" [(ngModel)]="seleccion">
+			<option value="titulo">Título</option>
+			<option value="autor">Autor</option>
+			<option value="sinopsis">Sinópsis</option>
+		</select>
+	</div>
+</form>
+<div class="container">
+	<div class="row">
+		<table class="table table-hover table-striped">
+			<thead>
+				<tr>
+					<th>Título</th>
+					<th>Autor</th>
+					<th>Año</th>
+					<th>Sinópsis</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let libro of libros | filtroPipe: filtro: seleccion">
+					<td>{{libro.titulo | uppercase}}</td>
+					<td>{{libro.autor}}</td>
+					<td>{{libro.anno}}</td>
+					<td>{{libro.sinopsis | reducirTexto: 70 : "..."}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<hr>
+<div class="form-group">
+	<select name="" id="" class="form-control" [(ngModel)]="idioma">
+		<option value="es">Español</option>
+		<option value="en">Inglés</option>
+	</select>
+</div>
+<div class="container">
+	<div class="row">
+
+		<h1>{{ 'bienvenida' | traductor: idioma}}</h1>
+		<br>
+		<p>
+			{{ 'datos.usuario' | traductor: idioma}}: shidalgo
+			<br>
+			{{ 'datos.contrasena' | traductor: idioma}}: 12345
+		</p>
+
+
+	</div>
+</div>
