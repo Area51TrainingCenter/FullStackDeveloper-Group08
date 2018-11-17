@@ -4,14 +4,14 @@ import { ListadoCursosComponent } from "./listado-cursos/listado-cursos.componen
 
 
 const rutas: Route[] = [
-	{ path: "cursos", component: ListadoCursosComponent }
+	{ path: "", component: ListadoCursosComponent }
 ]
 
 @NgModule({
 	declarations: [
 	],
 	imports: [
-		RouterModule.forRoot(rutas)
+		RouterModule.forChild(rutas)
 	],
 	exports: [RouterModule]
 })

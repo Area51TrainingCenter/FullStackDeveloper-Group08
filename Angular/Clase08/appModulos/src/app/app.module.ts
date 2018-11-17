@@ -4,8 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NucleoModule } from './nucleo/nucleo.module';
 import { RouterModule } from '@angular/router';
-import { AlumnosModule } from './alumnos/alumnos.module';
-import { CursosModule } from './cursos/cursos.module';
 
 @NgModule({
 	declarations: [
@@ -14,8 +12,6 @@ import { CursosModule } from './cursos/cursos.module';
 	imports: [
 		BrowserModule,
 		NucleoModule,
-		AlumnosModule,
-		CursosModule,
 		RouterModule
 	],
 	providers: [],

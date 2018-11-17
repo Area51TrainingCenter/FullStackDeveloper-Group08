@@ -3,14 +3,14 @@ import { RouterModule, Route } from "@angular/router"
 import { ListadoAlumnosComponent } from "./listado-alumnos/listado-alumnos.component";
 
 const rutas: Route[] = [
-	{ path: "alumnos", component: ListadoAlumnosComponent }
+	{ path: "", component: ListadoAlumnosComponent }
 ]
 
 @NgModule({
 	declarations: [
 	],
 	imports: [
-		RouterModule.forRoot(rutas)
+		RouterModule.forChild(rutas)
 	],
 	exports: [RouterModule]
 })
