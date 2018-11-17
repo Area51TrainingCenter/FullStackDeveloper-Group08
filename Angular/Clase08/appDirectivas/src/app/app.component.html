@@ -1,0 +1,10 @@
+<div simple>Texto de prueba</div>
+
+<div [appHover]="'white'" [colorHover]="'lime'">Texto de hoverDirective</div>
+
+<select [appDistritos]="['Lima', 'Magdalena', 'Pueblo Libre']"></select>
+
+<article appArchivo [ngClass]="{intermitente: aplicarClase}" (onOver)="aplicarClase=true" (onLeave)="aplicarClase=false"
+ (onSeleccion)="seleccion($event)"></article>
+
+<img [src]="imagen" alt="" *ngIf="imagen">
