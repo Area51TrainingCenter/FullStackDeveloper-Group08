@@ -1,0 +1,11 @@
+<input type="file" (change)="subir($event)" style="display:none" #archivo>
+
+<button (click)="abrirVentana()">Subir archivo</button>
+
+<img [src]="imagen" alt="" *ngIf="imagen">
+
+<input type="file" (change)="subirArchivos($event)" multiple>
+
+<div style="width:300px" *ngFor="let imagen of imagenes">
+	<img [src]="imagen" alt="" style="width:100%">
+</div>
