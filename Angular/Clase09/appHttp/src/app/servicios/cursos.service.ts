@@ -16,13 +16,19 @@ export class CursosService {
 		return this.http.get<ICurso[]>(`${environment.apiRest}/cursos`)
 	}
 
-	detallar(idCurso: number) { }
+	detallar(idCurso: number): Observable<ICurso> {
+		return this.http.get<ICurso>(`${environment.apiRest}/cursos/${idCurso}`)
+	}
 
 	insertar(curso: ICurso): Observable<ICurso> {
 		return this.http.post<ICurso>(`${environment.apiRest}/cursos`, curso)
 	}
 
-	actualizar(curso: ICurso) { }
+	actualizar(curso: ICurso): Observable<ICurso> {
+		return this.http.put<ICurso>(`${environment.apiRest}/cursos/${curso.idCurso}`, curso)
+	}
 
-	eliminar(idCurso: number) { }
+	eliminar(idCurso: number): Observable<ICurso> {
+		return this.http.delete<ICurso>(`${environment.apiRest}/cursos/${idCurso}`)
+	}
 }

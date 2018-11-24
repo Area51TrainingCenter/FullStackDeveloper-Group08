@@ -1,17 +1,22 @@
 <div class="row justify-content-center">
-	<div class="col-6">
+	<div class="col-8">
 		<a class="btn btn-success" [routerLink]="['nuevo']">Agregar</a>
 		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>ID</th>
 					<th>Título</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr *ngFor="let curso of cursos">
 					<td>{{curso.idCurso}}</td>
 					<td>{{curso.titulo}}</td>
+					<td>
+						<button class="btn-warning btn" (click)="editar(curso.idCurso)">Editar</button>
+						<button class="btn btn-danger" (click)="eliminar(curso.idCurso)">Eliminar</button>
+					</td>
 				</tr>
 			</tbody>
 		</table>
