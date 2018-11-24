@@ -1,3 +1,11 @@
-<p>
-  login works!
-</p>
+<form class="form-signin" [formGroup]="grupo" (ngSubmit)="ingresar()">
+	<label for="inputEmail" class="sr-only">Email address</label>
+	<input type="email" id="inputEmail" formControlName="correo" class="form-control" placeholder="Correo" autofocus>
+	<span *ngIf="grupo.get('correo').hasError('required') && grupo.get('correo').touched">El correo es necesario</span>
+	<span *ngIf="grupo.get('correo').hasError('email') && grupo.get('correo').touched">El formato no es de correo</span>
+	<label for="inputPassword" class="sr-only">Password</label>
+	<input type="password" id="inputPassword" formControlName="contrasena" class="form-control" placeholder="Contraseña">
+	<span *ngIf="grupo.get('contrasena').hasError('required') && grupo.get('contrasena').touched">La contraseña es
+		necesaria</span>
+	<button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!grupo.valid">Ingresar</button>
+</form>
