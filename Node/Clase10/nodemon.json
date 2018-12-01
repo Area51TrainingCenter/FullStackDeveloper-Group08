@@ -1,0 +1,8 @@
+{
+	"watch": [
+		"07-rutas-controlador.ts",
+		"controladores"
+	],
+	"ext": "ts",
+	"exec": "ts-node 07-rutas-controlador"
+}

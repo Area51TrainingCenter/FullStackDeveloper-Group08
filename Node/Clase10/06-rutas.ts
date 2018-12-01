@@ -13,18 +13,26 @@ const servidor: http.Server = http.createServer((req: http.IncomingMessage, res:
 	const pathname = parseado["pathname"]
 	const pathSinSlash = pathname.replace(/^\/+|\/+$/g, "")
 
+	//let encontrada: boolean = false
+
 	for (let ind = 0; ind < rutas.length; ind++) {
 		if (pathSinSlash == rutas[ind].path) {
 			if (rutas[ind].contentType == "json") {
 				res.setHeader("content-type", "application/json")
-				res.end(JSON.stringify(rutas[ind].respuesta))
+				return res.end(JSON.stringify(rutas[ind].respuesta))
 			} else {
 				res.setHeader("content-type", `text/${rutas[ind].contentType}`)
-				res.end(rutas[ind].respuesta)
+				return res.end(rutas[ind].respuesta)
 			}
-			break
+			//encontrada = true
+			//break
 		}
 	}
+
+	//if (!encontrada) {
+	res.setHeader("content-type", "text/plain")
+	res.end("Ruta no encontrada")
+	//}
 
 	//console.log(pathSinSlash)
 
