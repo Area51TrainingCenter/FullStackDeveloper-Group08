@@ -3,7 +3,8 @@
 		"server.ts",
 		"handlers",
 		"interfaces",
-		"routes"
+		"routes",
+		"api"
 	],
 	"ext": "ts",
 	"exec": "ts-node server.ts"

@@ -1,31 +1,18 @@
 import { Request, Response } from "express"
 import express = require("express")
+import { UsersController } from "../api/controllers/users.controller"
+//import { UsersController } from "../api/controllers/users.controller";
 
+const controller = new UsersController()
 const routerUsers = express.Router()
 
-routerUsers.get("/", (req: Request, res: Response) => {
-	/*res
-		.status(200)
-		.type("text/plain")
-		.send("mensaje")*/
-	res
-		.type("text/html")
-		.send(`
-			<!doctype html>
-			<html>
-				<body>
-					<form action="/users" method="post">
-						<input type="text" name="nombre">
-						<button>Enviar</button>
-					</form>
-				</body>
-			</html>
-		`)
-})
+routerUsers.get("/", controller.get)
+routerUsers.post("/", controller.create)
+routerUsers.put("/:id", controller.update)
+routerUsers.delete("/:id", controller.delete)
 
-routerUsers.post("/", (req: Request, res: Response) => {
-	res
-		.send("Datos guardados")
-})
+
+//routerUsers.get("/", UsersController.getUsers)
+//routerUsers.post("/", UsersController.insertUsers)
 
 export { routerUsers }
