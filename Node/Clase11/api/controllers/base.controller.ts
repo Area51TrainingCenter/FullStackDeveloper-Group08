@@ -11,11 +11,12 @@ export class BaseController {
 	async get(req: Request, res: Response) {
 		const promesa = new Promise((resolve, reject) => {
 			setTimeout(() => {
-				resolve([
+				reject(new Error("Ocurrió un error en la base de datos"))
+				/*resolve([
 					{ username: "shidalgo" },
 					{ username: "pneira" },
 					{ username: "mveliz" }
-				])
+				])*/
 			}, 1500)
 		})
 
@@ -38,7 +39,9 @@ export class BaseController {
 
 	}
 
-	create(req: Request, res: Response) { }
+	create(req: Request, res: Response) {
+		res.send(req.body.photo)
+	}
 
 	update(req: Request, res: Response) { }
 
