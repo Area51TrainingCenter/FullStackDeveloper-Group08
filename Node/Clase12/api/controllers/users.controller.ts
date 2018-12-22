@@ -50,6 +50,30 @@ export class UsersController extends BaseController {
 
 
 	}
+
+	async newAccessToken(req: Request, res: Response) {
+		const refreshToken = req.body.refreshToken
+
+		const user = await User.findOne({ refreshToken })
+
+		if (user) {
+			const tokens = createTokens(user._id, user.rol._id)
+
+			res
+				.json({
+					accessToken: tokens.accessToken
+				})
+		} else {
+			res
+				.status(404)
+				.json({
+					status: 404,
+					message: "User is not found"
+				})
+		}
+
+
+	}
 }
 
 
