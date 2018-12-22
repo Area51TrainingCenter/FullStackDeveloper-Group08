@@ -21,6 +21,7 @@ function autoPoblar(next) {
 }
 
 esquema.pre("find", autoPoblar)
+esquema.pre("findOne", autoPoblar)
 
 const User = mongoose.model("User", esquema)
 

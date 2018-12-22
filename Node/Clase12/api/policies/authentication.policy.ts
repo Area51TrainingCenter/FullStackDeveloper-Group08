@@ -12,6 +12,7 @@ const authentication = (req: Request, res: Response, next: NextFunction) => {
 				(data: any) => {
 					res.locals._id = data._id
 					res.locals.rol = data.rol
+					console.log(data.rol)
 					next()
 				},
 				(error: any) => {

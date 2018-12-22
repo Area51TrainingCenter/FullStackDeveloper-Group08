@@ -1,4 +1,4 @@
 export const environment = {
 	production: true,
-	rutaAPI: ""
+	rutaAPI: "http://localhost:3200"
 };

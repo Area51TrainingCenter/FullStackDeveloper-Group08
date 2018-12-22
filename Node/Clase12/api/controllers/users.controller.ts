@@ -14,7 +14,9 @@ export class UsersController extends BaseController {
 		const user = new User(data)
 		const usuario = await user.save()
 
-		const tokens = createTokens(usuario._id, usuario.rol)
+		const usuario2 = await User.findOne({ _id: usuario._id })
+
+		const tokens = createTokens(usuario2._id, usuario2.rol.rol)
 
 		usuario.refreshToken = tokens.refreshToken
 		await usuario.save()
@@ -35,7 +37,7 @@ export class UsersController extends BaseController {
 
 		if (user) {
 			const refreshToken = user.refreshToken
-			const tokens = createTokens(user._id, user.rol._id)
+			const tokens = createTokens(user._id, user.rol.rol)
 
 			res
 				.json({ accessToken: tokens.accessToken, refreshToken: refreshToken })
