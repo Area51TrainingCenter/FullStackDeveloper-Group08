@@ -11,6 +11,7 @@ const routerUsers = express.Router()
 
 routerUsers.get("/", handlersErrors.cacheo(controller.get))
 routerUsers.post("/", handlersImages.upload(), handlersImages.save(), controller.create)
+routerUsers.post("/login", handlersErrors.cacheo(controller.login))
 routerUsers.put("/:id", controller.update)
 routerUsers.delete("/:id", controller.delete)
 
