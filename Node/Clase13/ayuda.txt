@@ -91,6 +91,91 @@ db.libros.aggregate(
 	]
 ).pretty()
 
+db.personas.aggregate(
+	[
+		{
+			$group: {
+				_id: {genero: "$gender"}, 
+				cuenta: { $sum: 1},
+				promedio: {$avg: "$dob.age"}
+			}
+		}
+	]
+).pretty()
+
+
+db.personas.find(
+	{
+		"dob.age": {$gt: 60}
+	} 
+)
+
+db.personas.explain("executionStats").find(
+	{
+		"dob.age": {$gt: 60}
+	} 
+)
+
+db.personas.createIndex({
+	"dob.age": 1
+})
+
+db.personas.dropIndex({
+	"dob.age": 1
+})
+
+db.personas.getIndexes()
+
+db.personas.createIndex(
+	{
+		"dob.age": 1
+	},
+	{
+		partialFilterExpression: {
+			gender: "male"
+		}
+	}
+)
+
+db.personas.explain("executionStats").find(
+	{
+		"dob.age": {$gt: 60},
+		gender: "male"
+	} 
+)
+
+db.personas.find(
+	{
+		$and: [
+			{"dob.age": {$gt: 40} },
+			{gender: "female"}
+		]
+	}
+).count()
+
+db.personas.find(
+	{
+		$or: [
+			{"dob.age": {$gt: 40} },
+			{gender: "female"}
+		]
+	}
+).count()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
