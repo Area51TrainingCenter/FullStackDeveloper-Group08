@@ -1,0 +1,118 @@
+db.libros.insertMany(
+	[
+		{
+			titulo: "Pantaleon y las visitadoras",
+			autor: [
+				ObjectId("5c27a35ce67b3731adea7d5c"),
+				ObjectId("5c27a4d2e67b3731adea7d60")
+			]
+		},
+		{
+			titulo: "El Sexto",
+			autor: [
+				ObjectId("5c27a35ce67b3731adea7d5d")
+			]
+		}
+	]
+)
+
+db.libros.aggregate(
+	[
+		{
+			$lookup: {
+				from: "autores",
+				localField: "autor",
+				foreignField: "_id",
+				as: "autores"
+			}
+		}
+	]
+).pretty()
+
+db.libros.aggregate(
+	[
+		{
+			$match: {
+				titulo: "Pantaleon y las visitadoras"
+			}
+		},
+		{
+			$lookup: {
+				from: "autores",
+				localField: "autor",
+				foreignField: "_id",
+				as: "autores"
+			}
+		},
+
+		{
+			$project: { autor: 0, "autores._id": 0}
+		}
+	]
+).pretty()
+
+db.libros.aggregate(
+	[
+		{
+			$skip: 1
+		},		
+		{
+			$limit: 1
+		},
+		{
+			$sort: {
+				titulo: 1
+			}
+		},
+		{
+			$lookup: {
+				from: "autores",
+				localField: "autor",
+				foreignField: "_id",
+				as: "autores"
+			}
+		},
+
+		{
+			$project: { autor: 0, "autores._id": 0}
+		}
+	]
+).pretty()
+
+
+db.libros.aggregate(
+	[
+		{
+			$group: {
+				_id: {titulo: "$titulo"}, 
+				suma: { $sum: 1}
+			}
+		}
+	]
+).pretty()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
